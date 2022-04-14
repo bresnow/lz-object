@@ -1,6 +1,6 @@
-# lz-object - lzObject - compress the size of object properties and values
+# lz-object - lzObject - compress the size of object values
 
-Using the [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) library I wrote a program to traverse nested levels of a javascript object and compress the  property values to optimize storage. 
+Using the [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) library I wrote a program to traverse nested levels of a javascript object and compress the  property values to optimize storage.
 
 Output argument:
 
