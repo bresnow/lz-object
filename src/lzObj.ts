@@ -67,28 +67,28 @@ export const lzObj = {
                         compressedKey = LZString.compressToEncodedURIComponent(objectKey);
                     }
                     const nestedLevel: any = lzObj.compress(objectValue, { output });
-                    return { [compressedKey]: nestedLevel }
+                    return { [objectKey]: nestedLevel }
                 }
                 if (typeof objectValue === "string") {
                     if (output === "utf16") {
                         compressedValue = LZString.compressToUTF16(objectValue);
                         compressedKey = LZString.compressToUTF16(objectKey);
                         if (typeof compressedValue !== "undefined" && typeof compressedKey !== "undefined") {
-                            return { [compressedKey]: compressedValue }
+                            return { [objectKey]: compressedValue }
                         };
                     }
                     if (output === "base64") {
                         compressedValue = LZString.compressToBase64(objectValue);
                         compressedKey = LZString.compressToBase64(objectKey);
                         if (typeof compressedValue !== "undefined" && typeof compressedKey !== "undefined") {
-                            return { [compressedKey]: compressedValue }
+                            return { [objectKey]: compressedValue }
                         };
                     }
                     if (output === "uri") {
                         compressedValue = LZString.compressToEncodedURIComponent(objectValue);
                         compressedKey = LZString.compressToEncodedURIComponent(objectKey);
                         if (typeof compressedValue !== "undefined" && typeof compressedKey !== "undefined") {
-                            return { [compressedKey]: compressedValue }
+                            return { [objectKey]: compressedValue }
                         };
                     }
                     if (output === "uint8array") {
@@ -101,7 +101,7 @@ export const lzObj = {
                                 Object.assign(indexedObj, { [i]: arr[i] });
                             }
                         }
-                        return { [compressedKey]: indexedObj }
+                        return { [objectKey]: indexedObj }
                     }
                 }
             })
@@ -128,7 +128,7 @@ export const lzObj = {
                         let uint8 = Uint8Array.from(arr);
                         decompressedValue = LZString.decompressFromUint8Array(uint8);
                         decompressedKey = LZString.decompressFromUTF16(objectKey);
-                        return { [decompressedKey]: decompressedValue }
+                        return { [objectKey]: decompressedValue }
                     }
                 }
                 if (typeof objectValue === "string") {
@@ -136,28 +136,28 @@ export const lzObj = {
                         decompressedValue = LZString.decompressFromUTF16(objectValue);
                         decompressedKey = LZString.decompressFromUTF16(objectKey);
                         if (typeof decompressedValue !== "undefined" && typeof decompressedKey !== "undefined") {
-                            return { [decompressedKey]: decompressedValue }
+                            return { [objectKey]: decompressedValue }
                         };
                     }
                     if (output === "base64") {
                         decompressedValue = LZString.decompressFromBase64(objectValue);
                         decompressedKey = LZString.decompressFromBase64(objectKey);
                         if (typeof decompressedValue !== "undefined" && typeof decompressedKey !== "undefined") {
-                            return { [decompressedKey]: decompressedValue }
+                            return { [objectKey]: decompressedValue }
                         };
                     }
                     if (output === "uri") {
                         decompressedValue = LZString.decompressFromEncodedURIComponent(objectValue);
                         decompressedKey = LZString.decompressFromEncodedURIComponent(objectKey);
                         if (typeof decompressedValue !== "undefined" && typeof decompressedKey !== "undefined") {
-                            return { [decompressedKey]: decompressedValue }
+                            return { [objectKey]: decompressedValue }
                         };
                     }
 
                 }
                 if (checkIf.isObject(objectValue) || !Object.getOwnPropertyNames(objectValue).includes("0")) {
-                    if (output === "utf16") {
-                        decompressedKey = LZString.decompressFromUTF16(objectKey);
+                    if (output === "utf16" || output === "uint8array") {
+                        decompressedKey = LZString.decompressFromUTF16(`${objectKey}`);
                     }
                     else if (output === "base64") {
                         decompressedKey = LZString.decompressFromBase64(objectKey);
@@ -166,7 +166,7 @@ export const lzObj = {
                         decompressedKey = LZString.decompressFromEncodedURIComponent(objectKey);
                     }
                     const nestedLevel: any = lzObj.decompress(objectValue, { output });
-                    return { [decompressedKey]: nestedLevel }
+                    return { [objectKey]: nestedLevel }
                 }
             })
 

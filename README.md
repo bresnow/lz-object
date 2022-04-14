@@ -1,6 +1,6 @@
 # lz-object - lzObj - compress the size of object properties and values
 
-Using the [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) library I wrote a program to traverse nested levels of a javascript object and compress the property names and property values to optimize storage.
+Using the [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) library I wrote a program to traverse nested levels of a javascript object and compress the  property values to optimize storage. 
 
 Output argument:
 
@@ -40,43 +40,26 @@ let compreddUint8 = lzObj.compress(dummyObject, { output: "uint8array" });
 
 ```javascript
 COMPRESSED
-  utf16
-    {
-      '᫢䱇䠠 ': 'ᣠ尳䂌ൠ朠堲恓ࣆ)⒴Ւ  ',
-      'ᣣ汍䰰悖Œ  ': 'ᓠ䱅䁼ྀ✣倰悃ӥČ牴☡ɉ坨  ',
-      'ს᱙䆼䀠 ': { '᫢ⰽ䁬䀠 ': 'ৢ䰹䄬ಀᜧ嬠㨰ȃ㇃⋠⮠盐ӓ䞰  ' },
-      '᧡᱑䠠 ': '᳢ᰲ䄤ۀ樧倽䀩ሢㆡ䰣堡⁗î8堥㋠㢠ᘸèհ඄➚Ɉǐ䞠圠帠⸠氤äȌ硠Ũőۀ怮删 ',
-      'ע䰧堰恮ᓀ ': '† ',
-      'עⶡ塉䠠 ': 'ˢⰵ䂌඀嬣堾性ဠ ',
-      'Ὠ ': {
-        'ᢨ ': '๢␴䄴̀䄤格恍ȫば ',
-        'ྨ ': {
-          'ע䰧堰恮ᓀ ': 'ᆡ堫ŘǠ☦〵䓘䕀 ',
-          '᧡᱑䠠 ': 'ᆡ堫ŘǠ☦〵䓘䕀 ',
-          'עⶡ塉䠠 ': 'ᆡ堫ŘǠ☦〵䓘䕀 '
-        }
-      }
-    }
   encoded uri component
     {
-      NYUwnkA: 'MYFwTgNg1AzgFgSwGYimABKSUCmQ',
-      MYewtmCGB2AmQ: 'KYEwlgLg9gTgdAQwMYTFAdnJUTAIIprpA',
-      IYJw5gzkA: { NYSwdgJkA: 'E4UwZghgxgLg9sAdCAHjY0aLAVwHawCWceQA' },
-      M4JwxkA: 'OYRwSgggag1A9AdgBJICYwMwDsAKA3AZwAYsArLAcQBYYAZAVQGsid6BFAGwjwFcAvAC4A2AgDEA9nhAApAExDUGAOpA',
-      C4UwHsCGBOKUA: 'Q',
-      C4S2BsFMg: 'BYSwVgNg1gtgdgewA5A',
-      PpA: {
-        MRA: 'HISQUgigLgggmgcwFoILYKA',
-        HxA: {
-          C4UwHsCGBOKUA: 'IwNgLAnAHATAzAViXEUg',
-          M4JwxkA: 'IwNgLAnAHATAzAViXEUg',
-          C4S2BsFMg: 'IwNgLAnAHATAzAViXEUg'
+      key: 'MYFwTgNg1AzgFgSwGYimABKSUCmQ',
+      command: 'KYEwlgLg9gTgdAQwMYTFAdnJUTAIIprpA',
+      args: { kind: 'E4UwZghgxgLg9sAdCAHjY0aLAVwHawCWceQA' },
+      src: 'OYRwSgggag1A9AdgBJICYwMwDsAKA3AZwAYsArLAcQBYYAZAVQGsid6BFAGwjwFcAvAC4A2AgDEA9nhAApAExDUGAOpA',
+      textarea: 'Q',
+      title: 'BYSwVgNg1gtgdgewA5A',
+      _: {
+        '#': 'HISQUgigLgggmgcwFoILYKA',
+        '>': {
+          textarea: 'IwNgLAnAHATAzAViXEUg',
+          src: 'IwNgLAnAHATAzAViXEUg',
+          title: 'IwNgLAnAHATAzAViXEUg'
         }
       }
     }
   uint8array indexed into object
     {
-      '᫢䱇䠠 ': {
+      key: {
         '0': 49,
         '1': 129,
         '2': 112,
@@ -100,8 +83,36 @@ COMPRESSED
         '20': 144,
         '21': 0
       },
-      'ᣣ汍䰰悖Œ  ': {
-        '᫢ⰽ䁬䀠 ': {
+      command: {
+        '0': 41,
+        '1': 129,
+        '2': 48,
+        '3': 150,
+        '4': 2,
+        '5': 224,
+        '6': 246,
+        '7': 4,
+        '8': 224,
+        '9': 116,
+        '10': 4,
+        '11': 48,
+        '12': 49,
+        '13': 132,
+        '14': 197,
+        '15': 1,
+        '16': 217,
+        '17': 201,
+        '18': 81,
+        '19': 48,
+        '20': 8,
+        '21': 34,
+        '22': 154,
+        '23': 233,
+        '24': 0,
+        '25': 0
+      },
+      args: {
+        kind: {
           '0': 19,
           '1': 133,
           '2': 48,
@@ -132,7 +143,7 @@ COMPRESSED
           '27': 0
         }
       },
-      '᧡᱑䠠 ': {
+      src: {
         '0': 57,
         '1': 132,
         '2': 112,
@@ -204,24 +215,75 @@ COMPRESSED
         '68': 64,
         '69': 0
       },
-      'ע䰧堰恮ᓀ ': { '0': 64, '1': 0 },
-      'עⶡ塉䠠 ': { 'ᢨ ': { 'ע䰧堰恮ᓀ ': [Object], '᧡᱑䠠 ': [Object], 'עⶡ塉䠠 ': [Object] } }
+      textarea: { '0': 64, '1': 0 },
+      title: {
+        '0': 5,
+        '1': 132,
+        '2': 176,
+        '3': 86,
+        '4': 3,
+        '5': 96,
+        '6': 214,
+        '7': 11,
+        '8': 96,
+        '9': 118,
+        '10': 7,
+        '11': 176,
+        '12': 3,
+        '13': 144
+      },
+      _: {
+        '#': {
+          '0': 28,
+          '1': 132,
+          '2': 144,
+          '3': 82,
+          '4': 8,
+          '5': 160,
+          '6': 46,
+          '7': 8,
+          '8': 32,
+          '9': 154,
+          '10': 7,
+          '11': 48,
+          '12': 22,
+          '13': 130,
+          '14': 11,
+          '15': 96,
+          '16': 160,
+          '17': 0
+        },
+        '>': { textarea: [Object], src: [Object], title: [Object] }
+      }
     }
-
+  utf16
+    {
+      key: 'ᣠ尳䂌ൠ朠堲恓ࣆ)⒴Ւ  ',
+      command: 'ᓠ䱅䁼ྀ✣倰悃ӥČ牴☡ɉ坨  ',
+      args: { kind: 'ৢ䰹䄬ಀᜧ嬠㨰ȃ㇃⋠⮠盐ӓ䞰  ' },
+      src: '᳢ᰲ䄤ۀ樧倽䀩ሢㆡ䰣堡⁗î8堥㋠㢠ᘸèհ඄➚Ɉǐ䞠圠帠⸠氤äȌ硠Ũőۀ怮删 ',
+      textarea: '† ',
+      title: 'ˢⰵ䂌඀嬣堾性ဠ ',
+      _: {
+        '#': '๢␴䄴̀䄤格恍ȫば ',
+        '>': { textarea: 'ᆡ堫ŘǠ☦〵䓘䕀 ', src: 'ᆡ堫ŘǠ☦〵䓘䕀 ', title: 'ᆡ堫ŘǠ☦〵䓘䕀 ' }
+      }
+    }
   base64
     {
-      'NYUwnkA=': 'MYFwTgNg1AzgFgSwGYimABKSUCmQ',
-      'MYewtmCGB2AmQ===': 'KYEwlgLg9gTgdAQwMYTFAdnJUTAIIprpA===',
-      'IYJw5gzkA===': { 'NYSwdgJkA===': 'E4UwZghgxgLg9sAdCAHjY0aLAVwHawCWceQA' },
-      'M4JwxkA=': 'OYRwSgggag1A9AdgBJICYwMwDsAKA3AZwAYsArLAcQBYYAZAVQGsid6BFAGwjwFcAvAC4A2AgDEA9nhAApAExDUGAOpA',
-      'C4UwHsCGBOKUA===': 'Q===',
-      'C4S2BsFMg===': 'BYSwVgNg1gtgdgewA5A=',
-      'PpA=': {
-        'MRA=': 'HISQUgigLgggmgcwFoILYKA=',
-        'HxA=': {
-          'C4UwHsCGBOKUA===': 'IwNgLAnAHATAzAViXEUg',
-          'M4JwxkA=': 'IwNgLAnAHATAzAViXEUg',
-          'C4S2BsFMg===': 'IwNgLAnAHATAzAViXEUg'        }
+      key: 'MYFwTgNg1AzgFgSwGYimABKSUCmQ',
+      command: 'KYEwlgLg9gTgdAQwMYTFAdnJUTAIIprpA===',
+      args: { kind: 'E4UwZghgxgLg9sAdCAHjY0aLAVwHawCWceQA' },
+      src: 'OYRwSgggag1A9AdgBJICYwMwDsAKA3AZwAYsArLAcQBYYAZAVQGsid6BFAGwjwFcAvAC4A2AgDEA9nhAApAExDUGAOpA',
+      textarea: 'Q===',
+      title: 'BYSwVgNg1gtgdgewA5A=',
+      _: {
+        '#': 'HISQUgigLgggmgcwFoILYKA=',
+        '>': {
+          textarea: 'IwNgLAnAHATAzAViXEUg',
+          src: 'IwNgLAnAHATAzAViXEUg',
+          title: 'IwNgLAnAHATAzAViXEUg'
+        }
       }
     }
     
@@ -244,9 +306,9 @@ let decompUtf16 = lzObj.decompress(compressedUtf16, { output: "utf16" });
 ### The Decompressed Output
 
 ```javascript
-  *****************************************************
+   *****************************************************
   DECOMPRESSED
-   uri 
+    encoded uri component
       {
         key: 'ctrl+shift+r ctrl+e',
         command: 'editor.action.codeAction',
@@ -282,10 +344,15 @@ let decompUtf16 = lzObj.decompress(compressedUtf16, { output: "utf16" });
     }
     uint8array
     {
-      key: { kind: 'refactor.extract.function' },
+      key: 'ctrl+shift+r ctrl+e',
+      command: 'editor.action.codeAction',
+      args: { kind: 'refactor.extract.function' },
       src: 'gqRAV+/7HHd+3nPvs0njnG4+LUk0PUQlAvuzt6sFovqJ26d3W',
-      textarea: {
-        undefined: {
+      textarea: '',
+      title: 'hijlkmnop',
+      _: {
+        '#': 'NIJQtAYgZgmg',
+        '>': {
           textarea: '1649823555368',
           src: '1649823555368',
           title: '1649823555368'
@@ -309,4 +376,5 @@ let decompUtf16 = lzObj.decompress(compressedUtf16, { output: "utf16" });
         }
       }
     }
+
 ```
