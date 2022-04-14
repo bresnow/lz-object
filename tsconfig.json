@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "esnext" /* Specify what module code is generated. */,
+    "module": "commonjs" /* Specify what module code is generated. */,
     "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "outDir": "build" /* Specify an output folder for all emitted files. */,
     "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,

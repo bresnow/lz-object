@@ -14,10 +14,19 @@ Output argument:
 
 ## Usage
 
+```terminal
+yarn add lz-object
+```
+
 import lzObj
 
 ```javascript
-import { lzObj } from "./src";
+import  { lzObject } from "lz-object";
+
+OR
+
+let { lzObject } = require("lz-object");
+
 ```
 
 The uncompressed object is the first argument and the second argument is the output option. Decompress method works the same way.

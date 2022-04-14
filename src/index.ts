@@ -1,1 +1,1 @@
-export { lzObj } from "./lzObj";
+export { lzObject } from "./lzObj";

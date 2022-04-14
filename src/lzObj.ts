@@ -43,7 +43,7 @@ const findNestedObject = (object: any = {}, keyToMatch?: string | number | boole
     return null;
 };
 
-export const lzObj = {
+export const lzObject = {
     compress: (object: { [key: string]: any }, { output = "utf16" }: { output: "uint8array" | "utf16" | "base64" | "uri" }) => {
         const obj = {}
         object = JSON.parse(JSON.stringify(object))
@@ -66,7 +66,7 @@ export const lzObj = {
                     else if (output === "uri") {
                         compressedKey = LZString.compressToEncodedURIComponent(objectKey);
                     }
-                    const nestedLevel: any = lzObj.compress(objectValue, { output });
+                    const nestedLevel: any = lzObject.compress(objectValue, { output });
                     return { [objectKey]: nestedLevel }
                 }
                 if (typeof objectValue === "string") {
@@ -165,7 +165,7 @@ export const lzObj = {
                     else if (output === "uri") {
                         decompressedKey = LZString.decompressFromEncodedURIComponent(objectKey);
                     }
-                    const nestedLevel: any = lzObj.decompress(objectValue, { output });
+                    const nestedLevel: any = lzObject.decompress(objectValue, { output });
                     return { [objectKey]: nestedLevel }
                 }
             })
