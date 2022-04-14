@@ -4,12 +4,27 @@
     "name": "Bresnow",
     "email": "bresnow@me.com"
   },
-  "version": "0.1.21",
+  "description": "Object value compression",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/bresnow/lz-object"
+  },
+  "version": "0.1.22",
   "main": "./src/index.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc ./src/index.ts --esModuleInterop"
   },
+  "keywords": [
+    "object",
+    "compression",
+    "lz-object",
+    "lzma",
+    "lz-string",
+    "utf-16",
+    "base64",
+    "uint8array"
+  ],
   "dependencies": {
     "lz-string": "^1.4.4"
   },

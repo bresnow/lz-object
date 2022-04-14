@@ -1,4 +1,4 @@
-# lz-object - lzObj - compress the size of object properties and values
+# lz-object - lzObject - compress the size of object properties and values
 
 Using the [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) library I wrote a program to traverse nested levels of a javascript object and compress the  property values to optimize storage. 
 
@@ -18,7 +18,7 @@ Output argument:
 yarn add lz-object
 ```
 
-import lzObj
+import lzObject
 
 ```javascript
 import  { lzObject } from "lz-object";
@@ -33,14 +33,14 @@ The uncompressed object is the first argument and the second argument is the out
 
 ```javascript
 
-let compressedUtf16 = lzObj.compress(dummyObject, { output: "utf16" });
+let compressedUtf16 = lzObject.compress(dummyObject, { output: "utf16" });
 // console.log(compressedUtf16)
 
-let compressedUri = lzObj.compress(dummyObject, { output: "uri" });
+let compressedUri = lzObject.compress(dummyObject, { output: "uri" });
 // console.log(compressedUri)
-let compressedB64 = lzObj.compress(dummyObject, { output: "base64" });
+let compressedB64 = lzObject.compress(dummyObject, { output: "base64" });
 // console.log(compressedB64)
-let compreddUint8 = lzObj.compress(dummyObject, { output: "uint8array" });
+let compreddUint8 = lzObject.compress(dummyObject, { output: "uint8array" });
 // console.log(compreddUint8)
 
 ```
@@ -301,13 +301,13 @@ COMPRESSED
 ```javascript
 // console.log("*****************************************************")
 
-let decompUri = lzObj.decompress(compressedUri, { output: "uri" });
+let decompUri = lzObject.decompress(compressedUri, { output: "uri" });
 // console.log(decompUri);
-let decompB64 = lzObj.decompress(compressedB64, { output: "base64" });
+let decompB64 = lzObject.decompress(compressedB64, { output: "base64" });
 // console.log(decompB64);
-let decompUint8 = lzObj.decompress(compreddUint8, { output: "uint8array" });
+let decompUint8 = lzObject.decompress(compreddUint8, { output: "uint8array" });
 // console.log(decompUint8);
-let decompUtf16 = lzObj.decompress(compressedUtf16, { output: "utf16" });
+let decompUtf16 = lzObject.decompress(compressedUtf16, { output: "utf16" });
 // console.log(decompUtf16);
 
 ```
