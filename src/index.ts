@@ -1,0 +1,1 @@
+export { lzObj } from "./lzObj";
