@@ -1,35 +1,62 @@
 # lz-object - lzObj - compress the size of object properties and values
 
+Using the [lz-string](https://pieroxy.net/blog/pages/lz-string/index.html) library I wrote a program to traverse nested levels of a javascript object and compress the property names and property values to optimize storage.
 
+Output argument:
+
+- "utf16" : produces "valid" UTF-16 strings in the sense that all browsers can store them safely. So they can be stored in localStorage on all browsers tested (IE9-10, Firefox, Android, Chrome, Safari).
+  
+- "uri" produces ASCII strings representing the original string encoded in Base64 with a few tweaks to make these URI safe. Hence, you can send them to the server without thinking about URL encoding them. This saves bandwidth and CPU.
+
+- "base64" : produces ASCII UTF-16 strings representing the original string encoded in Base64. Can be decompressed with decompressFromBase64. This works by using only 6bits of storage per character.
+
+- "uint8array": produces an indexed object of the array converted from a Uint8Array. I specifically did it this way because of my work with [GUN](https://github.com/amark/gun.git). The database cannot store arrays so converting to an indexed object met a personal need. Converting it back to Uint8Array is simple enough so I may update. I have no need to do so now. *Property names are compressed to utf-16.
+
+## Usage
+
+import lzObj
 
 ```javascript
 import { lzObj } from "./src";
+```
 
+The uncompressed object is the first argument and the second argument is the output option. Decompress method works the same way.
 
+```javascript
 
-let compressedUri = lzObj.compress(dummyObject, { output: "uri" });
-// console.group("COMPRESSED")
-// console.group("encoded uri component")
-// console.log(compressedUri)
-// console.groupEnd()
-let compreddUint8 = lzObj.compress(dummyObject, { output: "uint8array" });
-// console.group("uint8array indexed into object")
-// console.log(compreddUint8)
-// console.groupEnd()
-// console.group("utf16")
 let compressedUtf16 = lzObj.compress(dummyObject, { output: "utf16" });
 // console.log(compressedUtf16)
-// console.groupEnd()
-// console.group("base64")
+
+let compressedUri = lzObj.compress(dummyObject, { output: "uri" });
+// console.log(compressedUri)
 let compressedB64 = lzObj.compress(dummyObject, { output: "base64" });
 // console.log(compressedB64)
-// console.groupEnd()
+let compreddUint8 = lzObj.compress(dummyObject, { output: "uint8array" });
+// console.log(compreddUint8)
 
 ```
 
+### The Compressed Output
 
 ```javascript
 COMPRESSED
+  utf16
+    {
+      '᫢䱇䠠 ': 'ᣠ尳䂌ൠ朠堲恓ࣆ)⒴Ւ  ',
+      'ᣣ汍䰰悖Œ  ': 'ᓠ䱅䁼ྀ✣倰悃ӥČ牴☡ɉ坨  ',
+      'ს᱙䆼䀠 ': { '᫢ⰽ䁬䀠 ': 'ৢ䰹䄬ಀᜧ嬠㨰ȃ㇃⋠⮠盐ӓ䞰  ' },
+      '᧡᱑䠠 ': '᳢ᰲ䄤ۀ樧倽䀩ሢㆡ䰣堡⁗î8堥㋠㢠ᘸèհ඄➚Ɉǐ䞠圠帠⸠氤äȌ硠Ũőۀ怮删 ',
+      'ע䰧堰恮ᓀ ': '† ',
+      'עⶡ塉䠠 ': 'ˢⰵ䂌඀嬣堾性ဠ ',
+      'Ὠ ': {
+        'ᢨ ': '๢␴䄴̀䄤格恍ȫば ',
+        'ྨ ': {
+          'ע䰧堰恮ᓀ ': 'ᆡ堫ŘǠ☦〵䓘䕀 ',
+          '᧡᱑䠠 ': 'ᆡ堫ŘǠ☦〵䓘䕀 ',
+          'עⶡ塉䠠 ': 'ᆡ堫ŘǠ☦〵䓘䕀 '
+        }
+      }
+    }
   encoded uri component
     {
       NYUwnkA: 'MYFwTgNg1AzgFgSwGYimABKSUCmQ',
@@ -180,23 +207,7 @@ COMPRESSED
       'ע䰧堰恮ᓀ ': { '0': 64, '1': 0 },
       'עⶡ塉䠠 ': { 'ᢨ ': { 'ע䰧堰恮ᓀ ': [Object], '᧡᱑䠠 ': [Object], 'עⶡ塉䠠 ': [Object] } }
     }
-  utf16
-    {
-      '᫢䱇䠠 ': 'ᣠ尳䂌ൠ朠堲恓ࣆ)⒴Ւ  ',
-      'ᣣ汍䰰悖Œ  ': 'ᓠ䱅䁼ྀ✣倰悃ӥČ牴☡ɉ坨  ',
-      'ს᱙䆼䀠 ': { '᫢ⰽ䁬䀠 ': 'ৢ䰹䄬ಀᜧ嬠㨰ȃ㇃⋠⮠盐ӓ䞰  ' },
-      '᧡᱑䠠 ': '᳢ᰲ䄤ۀ樧倽䀩ሢㆡ䰣堡⁗î8堥㋠㢠ᘸèհ඄➚Ɉǐ䞠圠帠⸠氤äȌ硠Ũőۀ怮删 ',
-      'ע䰧堰恮ᓀ ': '† ',
-      'עⶡ塉䠠 ': 'ˢⰵ䂌඀嬣堾性ဠ ',
-      'Ὠ ': {
-        'ᢨ ': '๢␴䄴̀䄤格恍ȫば ',
-        'ྨ ': {
-          'ע䰧堰恮ᓀ ': 'ᆡ堫ŘǠ☦〵䓘䕀 ',
-          '᧡᱑䠠 ': 'ᆡ堫ŘǠ☦〵䓘䕀 ',
-          'עⶡ塉䠠 ': 'ᆡ堫ŘǠ☦〵䓘䕀 '
-        }
-      }
-    }
+
   base64
     {
       'NYUwnkA=': 'MYFwTgNg1AzgFgSwGYimABKSUCmQ',
@@ -210,8 +221,7 @@ COMPRESSED
         'HxA=': {
           'C4UwHsCGBOKUA===': 'IwNgLAnAHATAzAViXEUg',
           'M4JwxkA=': 'IwNgLAnAHATAzAViXEUg',
-          'C4S2BsFMg===': 'IwNgLAnAHATAzAViXEUg'
-        }
+          'C4S2BsFMg===': 'IwNgLAnAHATAzAViXEUg'        }
       }
     }
     
@@ -219,31 +229,24 @@ COMPRESSED
 
 ```javascript
 // console.log("*****************************************************")
-// console.group("DECOMPRESSED")
-// console.group("encoded uri component")
+
 let decompUri = lzObj.decompress(compressedUri, { output: "uri" });
 // console.log(decompUri);
-// console.groupEnd()
-// console.group("base64")
 let decompB64 = lzObj.decompress(compressedB64, { output: "base64" });
-// console.groupEnd()
 // console.log(decompB64);
-// console.group("uint8array")
 let decompUint8 = lzObj.decompress(compreddUint8, { output: "uint8array" });
-// console.groupEnd()
 // console.log(decompUint8);
-// console.groupEnd()
-// console.group("utf16")
 let decompUtf16 = lzObj.decompress(compressedUtf16, { output: "utf16" });
 // console.log(decompUtf16);
-// console.groupEnd()
 
 ```
+
+### The Decompressed Output
 
 ```javascript
   *****************************************************
   DECOMPRESSED
-    encoded uri component
+   uri 
       {
         key: 'ctrl+shift+r ctrl+e',
         command: 'editor.action.codeAction',
