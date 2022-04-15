@@ -131,7 +131,6 @@ exports.lzObject = {
         if (exports.checkIf.isObject(object)) {
             var entries = Object.entries(object);
             var decompressedValue_1 = undefined;
-            var decompressedKey_1 = undefined;
             var entryArr = entries.map(function (entry, i, arr) {
                 var _a, _b, _c, _d, _e;
                 var _f = [entry[0], entry[1]], objectKey = _f[0], objectValue = _f[1];
@@ -140,46 +139,59 @@ exports.lzObject = {
                         var arr_2 = Object.values(objectValue);
                         var uint8 = Uint8Array.from(arr_2);
                         decompressedValue_1 = lz_string_1["default"].decompressFromUint8Array(uint8);
-                        decompressedKey_1 = lz_string_1["default"].decompressFromUTF16(objectKey);
-                        return _a = {}, _a[objectKey] = decompressedValue_1, _a;
+                        if (typeof decompressedValue_1 !== "undefined") {
+                            if (exports.checkIf.isNumber(decompressedValue_1)) {
+                                decompressedValue_1 = Number(decompressedValue_1);
+                            }
+                            if (exports.checkIf.isBoolean(decompressedValue_1)) {
+                                decompressedValue_1 = decompressedValue_1 === "true";
+                            }
+                            return _a = {}, _a[objectKey] = decompressedValue_1, _a;
+                        }
                     }
                 }
                 if (typeof objectValue === "string") {
                     if (output === "utf16") {
                         decompressedValue_1 = lz_string_1["default"].decompressFromUTF16(objectValue);
-                        decompressedKey_1 = lz_string_1["default"].decompressFromUTF16(objectKey);
-                        if (typeof decompressedValue_1 !== "undefined" && typeof decompressedKey_1 !== "undefined") {
+                        if (typeof decompressedValue_1 !== "undefined") {
+                            if (exports.checkIf.isNumber(decompressedValue_1)) {
+                                decompressedValue_1 = Number(decompressedValue_1);
+                            }
+                            if (exports.checkIf.isBoolean(decompressedValue_1)) {
+                                decompressedValue_1 = decompressedValue_1 === "true";
+                            }
                             return _b = {}, _b[objectKey] = decompressedValue_1, _b;
                         }
                         ;
                     }
                     if (output === "base64") {
                         decompressedValue_1 = lz_string_1["default"].decompressFromBase64(objectValue);
-                        decompressedKey_1 = lz_string_1["default"].decompressFromBase64(objectKey);
-                        if (typeof decompressedValue_1 !== "undefined" && typeof decompressedKey_1 !== "undefined") {
+                        if (typeof decompressedValue_1 !== "undefined") {
+                            if (exports.checkIf.isNumber(decompressedValue_1)) {
+                                decompressedValue_1 = Number(decompressedValue_1);
+                            }
+                            if (exports.checkIf.isBoolean(decompressedValue_1)) {
+                                decompressedValue_1 = decompressedValue_1 === "true";
+                            }
                             return _c = {}, _c[objectKey] = decompressedValue_1, _c;
                         }
                         ;
                     }
                     if (output === "uri") {
                         decompressedValue_1 = lz_string_1["default"].decompressFromEncodedURIComponent(objectValue);
-                        decompressedKey_1 = lz_string_1["default"].decompressFromEncodedURIComponent(objectKey);
-                        if (typeof decompressedValue_1 !== "undefined" && typeof decompressedKey_1 !== "undefined") {
+                        if (typeof decompressedValue_1 !== "undefined") {
+                            if (exports.checkIf.isNumber(decompressedValue_1)) {
+                                decompressedValue_1 = Number(decompressedValue_1);
+                            }
+                            if (exports.checkIf.isBoolean(decompressedValue_1)) {
+                                decompressedValue_1 = decompressedValue_1 === "true";
+                            }
                             return _d = {}, _d[objectKey] = decompressedValue_1, _d;
                         }
                         ;
                     }
                 }
                 if (exports.checkIf.isObject(objectValue) || !Object.getOwnPropertyNames(objectValue).includes("0")) {
-                    if (output === "utf16" || output === "uint8array") {
-                        decompressedKey_1 = lz_string_1["default"].decompressFromUTF16("".concat(objectKey));
-                    }
-                    else if (output === "base64") {
-                        decompressedKey_1 = lz_string_1["default"].decompressFromBase64(objectKey);
-                    }
-                    else if (output === "uri") {
-                        decompressedKey_1 = lz_string_1["default"].decompressFromEncodedURIComponent(objectKey);
-                    }
                     var nestedLevel = exports.lzObject.decompress(objectValue, { output: output });
                     return _e = {}, _e[objectKey] = nestedLevel, _e;
                 }

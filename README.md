@@ -320,7 +320,7 @@ let decompUtf16 = lzObject.decompress(compressedUtf16, { output: "utf16" });
     encoded uri component
       {
         key: 'ctrl+shift+r ctrl+e',
-        command: 'editor.action.codeAction',
+        command: true,
         args: { kind: 'refactor.extract.function' },
         src: 'gqRAV+/7HHd+3nPvs0njnG4+LUk0PUQlAvuzt6sFovqJ26d3W',
         textarea: '',
@@ -328,16 +328,16 @@ let decompUtf16 = lzObject.decompress(compressedUtf16, { output: "utf16" });
         _: {
           '#': 'NIJQtAYgZgmg',
           '>': {
-            textarea: '1649823555368',
-            src: '1649823555368',
-            title: '1649823555368'
+            textarea: 1649823555368,
+            src: 1649823555368,
+            title: 1649823555368
           }
         }
       }
     base64
     {
       key: 'ctrl+shift+r ctrl+e',
-      command: 'editor.action.codeAction',
+      command: true,
       args: { kind: 'refactor.extract.function' },
       src: 'gqRAV+/7HHd+3nPvs0njnG4+LUk0PUQlAvuzt6sFovqJ26d3W',
       textarea: '',
@@ -345,16 +345,16 @@ let decompUtf16 = lzObject.decompress(compressedUtf16, { output: "utf16" });
       _: {
         '#': 'NIJQtAYgZgmg',
         '>': {
-          textarea: '1649823555368',
-          src: '1649823555368',
-          title: '1649823555368'
+            textarea: 1649823555368,
+            src: 1649823555368,
+            title: 1649823555368
         }
       }
     }
     uint8array
     {
       key: 'ctrl+shift+r ctrl+e',
-      command: 'editor.action.codeAction',
+      command: true,
       args: { kind: 'refactor.extract.function' },
       src: 'gqRAV+/7HHd+3nPvs0njnG4+LUk0PUQlAvuzt6sFovqJ26d3W',
       textarea: '',
@@ -362,16 +362,16 @@ let decompUtf16 = lzObject.decompress(compressedUtf16, { output: "utf16" });
       _: {
         '#': 'NIJQtAYgZgmg',
         '>': {
-          textarea: '1649823555368',
-          src: '1649823555368',
-          title: '1649823555368'
+            textarea: 1649823555368,
+            src: 1649823555368,
+            title: 1649823555368
         }
       }
     }
   utf16
     {
       key: 'ctrl+shift+r ctrl+e',
-      command: 'editor.action.codeAction',
+      command: true,
       args: { kind: 'refactor.extract.function' },
       src: 'gqRAV+/7HHd+3nPvs0njnG4+LUk0PUQlAvuzt6sFovqJ26d3W',
       textarea: '',
@@ -379,9 +379,9 @@ let decompUtf16 = lzObject.decompress(compressedUtf16, { output: "utf16" });
       _: {
         '#': 'NIJQtAYgZgmg',
         '>': {
-          textarea: '1649823555368',
-          src: '1649823555368',
-          title: '1649823555368'
+            textarea: 1649823555368,
+            src: 1649823555368,
+            title: 1649823555368
         }
       }
     }

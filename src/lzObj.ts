@@ -118,7 +118,6 @@ export const lzObject = {
         if (checkIf.isObject(object)) {
             const entries = Object.entries(object);
             let decompressedValue: any = undefined;
-            let decompressedKey: any = undefined;
             let entryArr: { [key: string]: any } = entries.map((entry, i, arr) => {
                 let [objectKey, objectValue] = [entry[0], entry[1]];
 
@@ -127,44 +126,57 @@ export const lzObject = {
                         let arr: number[] = Object.values(objectValue);
                         let uint8 = Uint8Array.from(arr);
                         decompressedValue = LZString.decompressFromUint8Array(uint8);
-                        decompressedKey = LZString.decompressFromUTF16(objectKey);
-                        return { [objectKey]: decompressedValue }
+                        if (typeof decompressedValue !== "undefined") {
+                            if (checkIf.isNumber(decompressedValue)) {
+                                decompressedValue = Number(decompressedValue)
+                            }
+                            if (checkIf.isBoolean(decompressedValue)) {
+                                decompressedValue = decompressedValue === "true"
+                            }
+                            return { [objectKey]: decompressedValue }
+                        }
                     }
                 }
                 if (typeof objectValue === "string") {
                     if (output === "utf16") {
                         decompressedValue = LZString.decompressFromUTF16(objectValue);
-                        decompressedKey = LZString.decompressFromUTF16(objectKey);
-                        if (typeof decompressedValue !== "undefined" && typeof decompressedKey !== "undefined") {
+                        if (typeof decompressedValue !== "undefined") {
+                            if (checkIf.isNumber(decompressedValue)) {
+                                decompressedValue = Number(decompressedValue)
+                            }
+                            if (checkIf.isBoolean(decompressedValue)) {
+                                decompressedValue = decompressedValue === "true"
+                            }
                             return { [objectKey]: decompressedValue }
                         };
                     }
                     if (output === "base64") {
                         decompressedValue = LZString.decompressFromBase64(objectValue);
-                        decompressedKey = LZString.decompressFromBase64(objectKey);
-                        if (typeof decompressedValue !== "undefined" && typeof decompressedKey !== "undefined") {
+                        if (typeof decompressedValue !== "undefined") {
+                            if (checkIf.isNumber(decompressedValue)) {
+                                decompressedValue = Number(decompressedValue)
+                            }
+                            if (checkIf.isBoolean(decompressedValue)) {
+                                decompressedValue = decompressedValue === "true"
+                            }
                             return { [objectKey]: decompressedValue }
                         };
                     }
                     if (output === "uri") {
                         decompressedValue = LZString.decompressFromEncodedURIComponent(objectValue);
-                        decompressedKey = LZString.decompressFromEncodedURIComponent(objectKey);
-                        if (typeof decompressedValue !== "undefined" && typeof decompressedKey !== "undefined") {
+                        if (typeof decompressedValue !== "undefined") {
+                            if (checkIf.isNumber(decompressedValue)) {
+                                decompressedValue = Number(decompressedValue)
+                            }
+                            if (checkIf.isBoolean(decompressedValue)) {
+                                decompressedValue = decompressedValue === "true"
+                            }
                             return { [objectKey]: decompressedValue }
                         };
                     }
 
                 }
                 if (checkIf.isObject(objectValue) || !Object.getOwnPropertyNames(objectValue).includes("0")) {
-                    if (output === "utf16" || output === "uint8array") {
-                        decompressedKey = LZString.decompressFromUTF16(`${objectKey}`);
-                    }
-                    else if (output === "base64") {
-                        decompressedKey = LZString.decompressFromBase64(objectKey);
-                    }
-                    else if (output === "uri") {
-                        decompressedKey = LZString.decompressFromEncodedURIComponent(objectKey);
-                    }
                     const nestedLevel: any = lzObject.decompress(objectValue, { output });
                     return { [objectKey]: nestedLevel }
                 }
