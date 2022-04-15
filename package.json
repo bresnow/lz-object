@@ -9,7 +9,7 @@
     "type": "git",
     "url": "http://github.com/bresnow/lz-object"
   },
-  "version": "0.1.22",
+  "version": "0.1.3",
   "main": "./src/index.js",
   "license": "MIT",
   "scripts": {

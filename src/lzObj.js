@@ -56,7 +56,7 @@ exports.lzObject = {
     compress: function (object, _a) {
         var _b = _a.output, output = _b === void 0 ? "utf16" : _b;
         var obj = {};
-        object = JSON.parse(JSON.stringify(object));
+        // object = JSON.parse(JSON.stringify(object))
         if (exports.checkIf.isObject(object)) {
             var entries = Object.entries(object);
             var compressedValue_1 = undefined;
@@ -127,7 +127,7 @@ exports.lzObject = {
     decompress: function (object, _a) {
         var _b = _a.output, output = _b === void 0 ? "utf16" : _b;
         var obj = {};
-        object = JSON.parse(JSON.stringify(object));
+        // object = JSON.parse(JSON.stringify(object))
         if (exports.checkIf.isObject(object)) {
             var entries = Object.entries(object);
             var decompressedValue_1 = undefined;

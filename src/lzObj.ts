@@ -46,7 +46,7 @@ const findNestedObject = (object: any = {}, keyToMatch?: string | number | boole
 export const lzObject = {
     compress: (object: { [key: string]: any }, { output = "utf16" }: { output: "uint8array" | "utf16" | "base64" | "uri" }) => {
         const obj = {}
-        object = JSON.parse(JSON.stringify(object))
+        // object = JSON.parse(JSON.stringify(object))
         if (checkIf.isObject(object)) {
             const entries = Object.entries(object);
             let compressedValue: any = undefined;
@@ -114,7 +114,7 @@ export const lzObject = {
     },
     decompress: (object: { [key: string]: any }, { output = "utf16" }: { output: "uint8array" | "utf16" | "base64" | "uri" }) => {
         const obj = {}
-        object = JSON.parse(JSON.stringify(object))
+        // object = JSON.parse(JSON.stringify(object))
         if (checkIf.isObject(object)) {
             const entries = Object.entries(object);
             let decompressedValue: any = undefined;
