@@ -11,6 +11,7 @@
   },
   "version": "0.1.6",
   "main": "./src/index.js",
+  "types": "./types/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc ./src/index.ts --esModuleInterop --jsx react --outDir build --declaration --allowJs --emitDeclarationOnly --outDir types "
