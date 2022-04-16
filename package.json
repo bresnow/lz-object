@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc ./src/index.ts --esModuleInterop"
+    "build": "tsc ./src/index.ts --esModuleInterop --jsx react --outDir build --declaration --allowJs --emitDeclarationOnly --outDir types "
   },
   "keywords": [
     "object",
