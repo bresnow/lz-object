@@ -1,1 +1,0 @@
-export { lzObject } from "./lzObj";
