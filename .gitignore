@@ -1,3 +1,4 @@
 node_modules
 example.ts
+src/*.ts
 yarn.lock
